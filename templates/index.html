@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="calculator-container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <span class="app-title">CALCIFY</span>
+            <select id="mode-selector">
+                <option value="standard">Standard</option>
+                <option value="scientific">Scientific</option>
+                <option value="converter">Converter</option>
+            </select>
+        </div>
+
+        <!-- Display -->
+        <div class="display-area">
+            <div class="history-expression" id="history-display"></div>
+            <div class="current-expression" id="current-display">0</div>
+        </div>
+
+        <!-- Converter Controls (Hidden by default) -->
+        <div class="converter-controls hidden" id="converter-controls">
+            <div class="conv-type-row">
+                <select id="conv-type">
+                    <option value="currency">Currency</option>
+                    <option value="length">Length</option>
+                    <option value="weight">Weight</option>
+                </select>
+            </div>
+            <div class="conv-units-row">
+                <select id="unit-from"></select>
+                <span>to</span>
+                <select id="unit-to"></select>
+            </div>
+        </div>
+
+        <!-- Scientific Keypad (Hidden by default) -->
+        <div class="sci-keypad hidden" id="sci-keypad">
+            <!-- Row 1 -->
+            <button class="btn fn" data-action="brackets" data-val="(">(</button>
+            <button class="btn fn" data-action="brackets" data-val=")">)</button>
+            <button class="btn fn" data-action="memory" data-val="mc">mc</button>
+            <button class="btn fn" data-action="memory" data-val="m+">m+</button>
+            <button class="btn fn" data-action="memory" data-val="m-">m-</button>
+            <button class="btn fn" data-action="memory" data-val="mr">mr</button>
+
+            <!-- Row 2 -->
+            <button class="btn fn" data-action="sci" data-val="2nd">2ⁿᵈ</button>
+            <button class="btn fn" data-action="sci" data-val="sqr">x²</button>
+            <button class="btn fn" data-action="sci" data-val="cube">x³</button>
+            <button class="btn fn" data-action="sci" data-val="pow">xʸ</button>
+            <button class="btn fn" data-action="sci" data-val="exp">eˣ</button>
+            <button class="btn fn" data-action="sci" data-val="tenpow">10ˣ</button>
+
+            <!-- Row 3 -->
+            <button class="btn fn" data-action="sci" data-val="inv">¹/x</button>
+            <button class="btn fn" data-action="sci" data-val="sqrt">²√x</button>
+            <button class="btn fn" data-action="sci" data-val="cbrt">³√x</button>
+            <button class="btn fn" data-action="sci" data-val="yroot">ʸ√x</button>
+            <button class="btn fn" data-action="sci" data-val="ln">ln</button>
+            <button class="btn fn" data-action="sci" data-val="log">log</button>
+
+            <!-- Row 4 -->
+            <button class="btn fn" data-action="sci" data-val="fact">x!</button>
+            <button class="btn fn" data-action="sci" data-val="sin">sin</button>
+            <button class="btn fn" data-action="sci" data-val="cos">cos</button>
+            <button class="btn fn" data-action="sci" data-val="tan">tan</button>
+            <button class="btn fn" data-action="sci" data-val="e">e</button>
+            <button class="btn fn" data-action="sci" data-val="EE">EE</button>
+
+            <!-- Row 5 -->
+            <button class="btn fn" data-action="sci" data-val="rand">Rand</button>
+            <button class="btn fn" data-action="sci" data-val="sinh">sinh</button>
+            <button class="btn fn" data-action="sci" data-val="cosh">cosh</button>
+            <button class="btn fn" data-action="sci" data-val="tanh">tanh</button>
+            <button class="btn fn" data-action="sci" data-val="pi">π</button>
+            <button class="btn fn" data-action="sci" data-val="rad">Rad</button>
+        </div>
+
+        <!-- Main Keypad -->
+        <div class="keypad" id="keypad">
+            <button class="btn fn" data-action="clear">AC</button>
+            <button class="btn fn" data-action="brackets" data-val="()">()</button>
+            <button class="btn fn" data-action="percent">%</button>
+            <button class="btn op" data-action="operator" data-val="/">÷</button>
+
+            <button class="btn num" data-action="number" data-val="7">7</button>
+            <button class="btn num" data-action="number" data-val="8">8</button>
+            <button class="btn num" data-action="number" data-val="9">9</button>
+            <button class="btn op" data-action="operator" data-val="*">×</button>
+
+            <button class="btn num" data-action="number" data-val="4">4</button>
+            <button class="btn num" data-action="number" data-val="5">5</button>
+            <button class="btn num" data-action="number" data-val="6">6</button>
+            <button class="btn op" data-action="operator" data-val="-">-</button>
+
+            <button class="btn num" data-action="number" data-val="1">1</button>
+            <button class="btn num" data-action="number" data-val="2">2</button>
+            <button class="btn num" data-action="number" data-val="3">3</button>
+            <button class="btn op" data-action="operator" data-val="+">+</button>
+
+            <button class="btn num" data-action="number" data-val="0">0</button>
+            <button class="btn num" data-action="number" data-val=".">.</button>
+            <button class="btn num" data-action="backspace">⌫</button>
+            <button class="btn accent" data-action="calculate">=</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
